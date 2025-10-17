@@ -9,12 +9,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //base styling class for each cell
     squares.forEach((sq, idx) => {
+        // hover visuals for empty cells
+        sq.addEventListener("mouseenter", () => {
+            if (!state[idx]) sq.classList.add("hover");
+        });
+        sq.addEventListener("mouseleave", () => {
+            sq.classList.remove("hover");
+        });
+
         sq.addEventListener("click", () => {
-            if (state[idx]) return;              
+            if (state[idx]) return;
             state[idx] = currentPlayer;
             sq.textContent = currentPlayer;
-            sq.classList.add(currentPlayer);     
+            sq.classList.add(currentPlayer);
+            sq.classList.remove("hover");
             currentPlayer = currentPlayer === "X" ? "O" : "X";
+        });
     });
-  });
 });
